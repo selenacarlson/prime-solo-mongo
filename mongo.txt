@@ -35,8 +35,8 @@
     orders.update({"orderDate" : ISODate("2017-02-03T00:00:00Z")}, {$set: { "lineItems.0.productName": "transistor radio" }});
     orders.update({"orderDate" : ISODate("2017-02-03T00:00:00Z")}, {$set: { "lineItems.0.quantity": 2 }});
 
-8. Find orders with lineItems that have a quantity that is less than 10, but greater than 2. You will have to research $
-
-    orders.find({ $and:[ {orderTotal: {$gt: 2}}, {orderTotal: {$lt: 10}} ] });
+8. Find orders with lineItems that have a quantity that is less than 10, but greater than 2. You will have to research $elemMatch
+    
+    orders.find({lineItems: { $elemMatch: { quantity: {$gt: 2, $lt: 10 } } } } );
 
 
